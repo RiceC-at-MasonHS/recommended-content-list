@@ -3,7 +3,7 @@ const shareButton = document.getElementById('share-button');
 if (navigator.share) {
     shareButton.addEventListener('click', () => {
         navigator.share({
-            title: 'Web Share API Demo',
+            title: 'Recommendation List Demo',
             text: 'Check out this amazing content!',
             url: 'https://example.com',
         })
