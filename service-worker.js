@@ -9,8 +9,8 @@ self.addEventListener('install', (event) => {
                 '/recommended-content-list/manifest.json',
                 '/recommended-content-list/src/assets/icons/favicon-96x96.png',
                 '/recommended-content-list/src/assets/icons/apple-touch-icon.png',
-                '/recommended-content-list/src/assets/icons/android-chrome-192x192.png',
-                '/recommended-content-list/src/assets/icons/android-chrome-512x512.png'
+                '/recommended-content-list/src/assets/icons/web-app-manifest-192x192.png',
+                '/recommended-content-list/src/assets/icons/web-app-manifest-512x512.png'
             ]);
         })
     );
