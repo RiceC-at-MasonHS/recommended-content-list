@@ -3,16 +3,14 @@ self.addEventListener('install', (event) => {
     event.waitUntil(
         caches.open('rec-list-cache').then((cache) => {
             return cache.addAll([
-                '/src/index.html',
-                '/src/styles.css',
-                '/src/app.js',
-                '/manifest.json',
-                '/src/assets/icons/favicon-16x16.png',
-                '/src/assets/icons/favicon-32x32.png',
-                '/src/assets/icons/favicon-96x96.png',
-                '/src/assets/icons/apple-touch-icon.png',
-                '/src/assets/icons/android-chrome-192x192.png',
-                '/src/assets/icons/android-chrome-512x512.png'
+                '/recommended-content-list/src/index.html',
+                '/recommended-content-list/src/styles.css',
+                '/recommended-content-list/src/app.js',
+                '/recommended-content-list/manifest.json',
+                '/recommended-content-list/src/assets/icons/favicon-96x96.png',
+                '/recommended-content-list/src/assets/icons/apple-touch-icon.png',
+                '/recommended-content-list/src/assets/icons/android-chrome-192x192.png',
+                '/recommended-content-list/src/assets/icons/android-chrome-512x512.png'
             ]);
         })
     );
