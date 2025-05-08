@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon links -->
+    <link rel="icon" type="image/png" href="src/assets/icons/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="src/assets/icons/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="src/assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="src/assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="src/assets/icons/favicon.ico" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="src/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="RecList" />
+    
+    <!-- Manifest files -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#6200ea">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>RecList</title>
+</head>
+<body>
+    <h1>Welcome to the PWA RecList</h1>
+    <button id="shareButton">Share to This App</button>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(() => console.log('Service Worker registered successfully.'))
+                .catch((error) => console.error('Service Worker registration failed:', error));
+        }
+    </script>
+</body>
+</html>
