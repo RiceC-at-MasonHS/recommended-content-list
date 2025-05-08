@@ -18,17 +18,8 @@ recommended-content-list
 
 ## Getting Started
 
-To run the PWA locally, follow these steps:
-
-1. Clone the repository:
-   ```
-   git clone <repository-url>
-   cd pwa-share-app
-   ```
-
-2. Open the `src/index.html` file in a web browser. For best results, use a local server to serve the files.
-
-3. Ensure that your browser supports the Web Share API and that you are testing on a mobile device or an emulator.
+This PWA has been modified to be run from GitHub Pages.
+(That means some of the URLs for accessing favicons & js files have `/recommended-content-list/` prepended.)
 
 ## Features
 
