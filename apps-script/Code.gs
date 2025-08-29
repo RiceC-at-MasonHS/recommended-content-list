@@ -10,10 +10,8 @@
 var SHEET_ID = 'REPLACE_WITH_SHEET_ID'; // set in Properties or replace here
 var SHEET_NAME = 'Sheet1';
 
-// Configure emails
+// Configure the teacher email allowed to post. Replace before deploying.
 var TEACHER_EMAIL = 'teacher@school.edu';
-// Add any additional poster accounts here (e.g. your personal account)
-var ALLOWED_POSTERS = [TEACHER_EMAIL, 'you.personal@example.com'];
 
 function _getSheet() {
   var ss = SpreadsheetApp.openById(SHEET_ID);
@@ -28,8 +26,8 @@ function doPost(e) {
   // Authentication: preferred deployment is "Execute as: User accessing the web app"
   // and access limited to your domain. Use Session.getActiveUser().getEmail() to verify.
   var sender = Session.getActiveUser && Session.getActiveUser().getEmail ? Session.getActiveUser().getEmail() : 'unknown';
-  // Allow teacher plus any additional poster accounts defined in ALLOWED_POSTERS
-  if (ALLOWED_POSTERS.indexOf(sender) === -1) {
+  // Only allow the teacher account to post.
+  if (sender !== TEACHER_EMAIL) {
     return ContentService.createTextOutput(JSON.stringify({ ok: false, error: 'Forbidden' })).setMimeType(ContentService.MimeType.JSON);
   }
 
@@ -56,18 +54,7 @@ function doGet(e) {
     return obj;
   });
 
-  // Mask senderEmail for non-teacher viewers so students see posts attributed to the teacher.
-  // If the requester is the teacher (or an allowed admin), they will see the real sender.
-  var requester = Session.getActiveUser && Session.getActiveUser().getEmail ? Session.getActiveUser().getEmail() : '';
-  var shouldMask = (requester !== TEACHER_EMAIL);
-  if (shouldMask) {
-    rows = rows.map(function(r){
-      // keep a realSender field for audit, but present senderEmail as teacher's email
-      if (r.senderEmail) r.realSenderEmail = r.senderEmail;
-      r.senderEmail = TEACHER_EMAIL;
-      return r;
-    });
-  }
+  // No masking: return stored senderEmail as-is. Access to write is restricted to the teacher.
 
   // Filtering
   if (params.id) {
