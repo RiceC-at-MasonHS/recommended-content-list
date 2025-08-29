@@ -44,6 +44,12 @@ function doPost(e) {
 
 function doGet(e) {
   var params = e.parameter || {};
+  // Quick protected whoami endpoint: ?whoami=1
+  if (params.whoami === '1') {
+    var caller = Session.getActiveUser && Session.getActiveUser().getEmail ? Session.getActiveUser().getEmail() : null;
+    var isTeacher = (caller === TEACHER_EMAIL);
+    return ContentService.createTextOutput(JSON.stringify({ email: caller, isTeacher: isTeacher })).setMimeType(ContentService.MimeType.JSON);
+  }
   var sheet = _getSheet();
   var values = sheet.getDataRange().getValues();
   var headers = values.shift();
