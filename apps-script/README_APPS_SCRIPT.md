@@ -9,7 +9,7 @@ Setup
    id, timestamp, title, text, url, tags, thread, senderEmail, status, rawPayload
 2. Open the Script editor (Extensions → Apps Script) and paste `Code.gs` from this repo.
 3. In the script, set `SHEET_ID` to your Sheet ID or set a script property (Project Settings → Script properties).
-4. Replace `TEACHER_EMAIL` in the code with your teacher email.
+4. Replace `TEACHER_EMAIL` in the code with your teacher email. This deployment only allows that email to post.
 
 Deployment (domain-auth option)
 1. Click **Deploy → New deployment**.
@@ -19,6 +19,8 @@ Deployment (domain-auth option)
 5. Deploy and copy the `exec` URL.
 
 Note: After deployment, add the `APPS_SCRIPT_WEB_APP_URL` value to your repository secrets so CI can inject it into `manifest.json` at deploy time. Do not commit the `exec` URL or any secrets into the repository.
+
+Important: If you edited `apps-script/Code.gs` in the repo, you must redeploy the Apps Script web app in the Apps Script editor for changes to take effect: create a new version and update the deployment.
 
 Testing
 - For initial tests, temporarily allow access to "Anyone, even anonymous" and use `curl` or Postman to POST to the exec URL.

@@ -33,13 +33,5 @@
         </div>
 
     <script src="app.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            // register the service worker using a path relative to this page
-            navigator.serviceWorker.register('../service-worker.js')
-                .then(() => console.log('Service Worker registered successfully.'))
-                .catch((error) => console.error('Service Worker registration failed:', error));
-        }
-    </script>
 </body>
 </html>
