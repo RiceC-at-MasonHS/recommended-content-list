@@ -8,7 +8,7 @@
   "prefer_related_applications": false,
   "description": "Teacher recommended content, to extend learning.",
   "share_target": {
-    "action": "__APPS_SCRIPT_WEB_APP_URL__",
+    "action": "./src/share.html",
     "method": "POST",
     "enctype": "application/x-www-form-urlencoded",
     "params": {
