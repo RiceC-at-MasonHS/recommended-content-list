@@ -18,6 +18,8 @@ Deployment (domain-auth option)
 4. Set **Who has access**: *Anyone in <your-school-domain>*.
 5. Deploy and copy the `exec` URL.
 
+Note: After deployment, add the `APPS_SCRIPT_WEB_APP_URL` value to your repository secrets so CI can inject it into `manifest.json` at deploy time. Do not commit the `exec` URL or any secrets into the repository.
+
 Testing
 - For initial tests, temporarily allow access to "Anyone, even anonymous" and use `curl` or Postman to POST to the exec URL.
 - When testing from the installed PWA on your phone, deploy with domain access and ensure you are signed into the school account in Chrome.

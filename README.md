@@ -32,6 +32,9 @@ Quick steps to enable CI deploy:
 
 If you prefer to test locally, copy `.env.example` to `.env` and populate `APPS_SCRIPT_WEB_APP_URL` with your Apps Script exec URL. Local testing will still use the placeholder manifest; CI replaces it for production.
 
+Important: `manifest.json` is generated at CI time from `manifest.template.json`.
+Do not manually edit or commit `manifest.json` in `main` — it is intentionally produced during the deploy step so secrets are not stored on the branch. If you find a `manifest.json` in the repository, delete it to avoid confusion; the CI will recreate it for the published site.
+
 ## Features
 
 - Basic layout and styling

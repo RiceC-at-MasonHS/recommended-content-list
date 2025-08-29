@@ -24,6 +24,8 @@ Manifest changes
   - Ensure `share_target.method` is `POST` and `enctype` is `application/x-www-form-urlencoded`.
   - Keep `start_url` relative (e.g., `./src/index.html`) so GitHub Pages subpath works.
 
+Note: In this repository we generate `manifest.json` from `manifest.template.json` during CI so secrets (the Apps Script exec URL) are not committed to `main`. Do not edit `manifest.json` in `main`; update `manifest.template.json` or add the `APPS_SCRIPT_WEB_APP_URL` secret in GitHub to change the deployed manifest.
+
 Hosting on GitHub Pages
 - Use relative links in HTML and in `app.js` and `service-worker.js` registration (e.g., `./service-worker.js`) so the repo-name subpath is respected.
 - Push to `main` and enable GitHub Pages from Settings (branch `main`, folder `/root` or `/docs` depending on your preference).
