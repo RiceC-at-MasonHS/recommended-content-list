@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Favicon links (relative paths for GitHub Pages) -->
+    <link rel="icon" type="image/png" href="assets/icons/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+    <link rel="shortcut icon" href="assets/icons/favicon.ico" />
+    
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/recommended-content-list/src/assets/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="RecList" />
+    
+    <!-- Manifest file (relative path so it works from the repo subpath) -->
+    <link rel="manifest" href="../manifest.json">
+    <meta name="description" content="Teacher recommended content, to extend learning.">
+    
+    <!-- Theme color -->
+    <meta name="theme-color" content="#2C7E34">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <title>RecList</title>
+</head>
+<body>
+    <h1>Welcome to the PWA RecList</h1>
+
+    <script src="app.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            // register the service worker using a path relative to this page
+            navigator.serviceWorker.register('../service-worker.js')
+                .then(() => console.log('Service Worker registered successfully.'))
+                .catch((error) => console.error('Service Worker registration failed:', error));
+        }
+    </script>
+</body>
+</html>
