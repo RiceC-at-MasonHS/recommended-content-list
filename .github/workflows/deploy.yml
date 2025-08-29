@@ -1,0 +1,33 @@
+name: Build and deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Generate manifest.json from template
+        env:
+          APPS_SCRIPT_WEB_APP_URL: ${{ secrets.APPS_SCRIPT_WEB_APP_URL }}
+        run: |
+          sed "s|__APPS_SCRIPT_WEB_APP_URL__|${APPS_SCRIPT_WEB_APP_URL}|g" manifest.template.json > manifest.json
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
