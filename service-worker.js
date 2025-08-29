@@ -1,8 +1,8 @@
 self.addEventListener('install', (event) => {
     console.log('Service Worker installing...');
     event.waitUntil(
-        caches.open('rec-list-cache').then((cache) => {
-            return cache.addAll([
+        caches.open('rec-list-cache').then(async (cache) => {
+            const urls = [
                 './src/index.html',
                 './src/styles.css',
                 './src/app.js',
@@ -11,7 +11,17 @@ self.addEventListener('install', (event) => {
                 './src/assets/icons/apple-touch-icon.png',
                 './src/assets/icons/web-app-manifest-192x192.png',
                 './src/assets/icons/web-app-manifest-512x512.png'
-            ]);
+            ];
+            // Add resources one-by-one so a single 404 doesn't reject the whole install
+            for (const u of urls) {
+                try {
+                    const resp = await fetch(u);
+                    if (resp.ok) await cache.put(u, resp.clone());
+                } catch (err) {
+                    // ignore individual resource failures
+                    console.warn('SW cache add failed for', u, err);
+                }
+            }
         })
     );
 });
